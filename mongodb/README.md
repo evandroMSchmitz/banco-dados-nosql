@@ -420,6 +420,7 @@ Type "it" for more
 ```
 
 <h2>Exercício 3 - Stockbrokers</h2>
+
 1. Liste as ações com profit acima de 0.5 (limite a 10 o resultado):
 - Comando:
 ```javascript
@@ -620,4 +621,3 @@ db.stocks.aggregate([ {"$group": {_id: "$Sector", tickets: {$addToSet: "$Ticker"
 { "_id" : "Utilities", "tickets" : [ "ALE", "NGG", "DGAS", "WTR", "CMS", "ARTNA", "DUK", "GXP", "AWK", "PNY", "CWCO", "POM", "XEL", "APU", "ADGE", "UNS", "TAC", "WR", "RGCO", "EDE", "PNW", "HNP", "WEC", "PAM", "BKH", "EDN", "FNRG", "EIX", "SXE", "UGI", "NWN", "EE", "DTE", "GAS", "SWX", "AMID", "NKA", "CHC", "ETR", "EOC", "ELP", "TRP", "HTM", "CWT", "ORA", "PEGI", "CORR", "NU", "AWR", "OKE", "ENI", "SPH", "AT", "JE", "SJW", "NEE", "YORW", "EXC", "PNM", "MGEE", "WGL", "CNL", "CZZ", "UIL", "LNT", "MSEX", "CTWS", "OTTR", "UTL", "HE", "SCG", "NVE", "BIP", "CPK", "CPN", "PCYO", "NI", "IDA", "TGS", "TE", "TEG", "OGE", "ATO", "NYLD", "ELLO", "CDZI", "SBS", "AEP", "CPL", "AVA", "NRG", "CIG", "D", "CLNE", "NWE", "SO", "CNP", "NJR", "ATLS", "STR", "AEE", "SJI", "BEP", "ITC", "AES", "PNG", "KEP", "LG", "VVC", "POR", "OPTT", "SMLP", "MDU", "SRE", "FE", "DYN", "EBR", "EQT", "EGAS", "PEG", "ED", "PCG", "PPL", "FCEL" ] }
 { "_id" : "Conglomerates", "tickets" : [ "ANDA", "MWRX", "MMM", "PME", "SPLP", "SAEX", "HTWO", "QPAC", "AQU", "NC", "PBSK", "HMTV", "MITSY", "EAGL", "JACQ", "CACG", "ENT", "GDEF", "HRG", "IEP", "LDL" ] }
 ```
-* * *
