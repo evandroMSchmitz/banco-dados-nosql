@@ -55,7 +55,7 @@ db.pets.find({"name": "Kilha", "species": "Gato"}, {_id: 1})
 { "_id" : ObjectId("5e5b9de663fad5d4dacd1db3") }
 ```
 * * *
-5. Faça uma busca pelo ID e traga o Hamster Mike: Fazer
+5. Faça uma busca pelo ID e traga o Hamster Mike:
 - Comando:
 ```javascript
 db.pets.find({"_id": ObjectId("5e5b9dcb63fad5d4dacd1db1")})
