@@ -641,9 +641,9 @@ R: Total de pessoas distintas: 2200
 2. Contabilize quantos e-mails tem a palavra “fraud”:
 - Comando:
 ```javascript
-
+db.stocks.find({"$or": [{"text": {"$regex": /fraud/i}}, {"subject": {"$regex": /fraud/i}}]}).count()
 ```
 - Resultado:
 ```javascript
-
+25
 ```
