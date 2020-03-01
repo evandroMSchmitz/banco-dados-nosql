@@ -96,3 +96,109 @@ db.pets.find({"name": "Mike", "species": "Cachorro"})
 ```javascript
 { "_id" : ObjectId("5e5b9df763fad5d4dacd1db4"), "name" : "Mike", "species" : "Cachorro" }
 ```
+
+<h2>Exercício 2 – Mama mia!</h2>
+
+1. Liste/Conte todas as pessoas que tem exatamente 99 anos. Você pode usar um count para indicar a quantidade:
+- Comando:
+```javascript
+db.italians.find({"age": 99}).count()
+```
+- Resultado:
+```javascript
+0
+```
+* * *
+2. Identifique quantas pessoas são elegíveis atendimento prioritário (pessoas com mais de 65 anos):
+- Comando:
+```javascript
+db.italians.find({"age": {$gt: 65}}).count()
+```
+- Resultado:
+```javascript
+1736
+```
+* * *
+3. Identifique todos os jovens (pessoas entre 12 a 18 anos):
+- Comando:
+```javascript
+db.italians.find({"age": {"$gt": 12, "$lt": 18}}).count()
+```
+- Resultado:
+```javascript
+649
+```
+* * *
+4. Identifique quantas pessoas tem gatos, quantas tem cachorro e quantas não tem nenhum dos dois:
+- Comando (cada linha responde a uma parte da pergunta, respectivamente):
+```javascript
+db.italians.find({"cat": {"$exists": true,}}).count()
+db.italians.find({"dog": {"$exists": true,}}).count()
+db.italians.find({"$and": [{"dog": {"$exists": false}}, {"cat": {"$exists": false}}]}).count()
+```
+- Resultado:
+```javascript
+5909
+3980
+2419
+```
+* * *
+5. Liste/Conte todas as pessoas acima de 60 anos que tenham gato:
+- Comando:
+```javascript
+db.italians.find({"$and": [{"age": {"$gt": 60}}, {"cat": {"$exists": true}}]}).count()
+```
+- Resultado:
+```javascript
+1449
+```
+* * *
+6. Liste/Conte todos os jovens com cachorro:
+- Comando:
+```javascript
+db.italians.find({"$and": [{"age": {"$gt": 12, "$lt": 18}}, {"dog": {"$exists": true}}]}).count()
+```
+- Resultado:
+```javascript
+251
+```
+* * *
+7. Utilizando o $where, liste todas as pessoas que tem gato e cachorro:
+- Comando:
+```javascript
+db.italians.find({$where: "this.dog && this.cat"}).count()
+```
+- Resultado:
+```javascript
+2308
+```
+* * *
+8. Liste todas as pessoas mais novas que seus respectivos gatos:
+- Comando:
+```javascript
+ db.italians.find({$where: "this.cat && this.age > this.cat.age"}).count()
+```
+- Resultado:
+```javascript
+5218
+```
+* * *
+9. Liste as pessoas que tem o mesmo nome que seu bichano (gatou ou cachorro):
+- Comando:
+```javascript
+db.italians.find({$where: "(this.cat && this.firstname == this.cat.name) || (this.dog && this.firstname == this.dog.name)"}).count()
+```
+- Resultado:
+```javascript
+96
+```
+* * *
+10. Projete apenas o nome e sobrenome das pessoas com tipo de sangue de fator RH negativo:
+- Comando:
+```javascript
+db.italians.find({"bloodType": {"$regex": /\w{1,2}-/i}}).count()
+```
+- Resultado:
+```javascript
+4908
+```
