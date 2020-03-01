@@ -196,9 +196,60 @@ db.italians.find({$where: "(this.cat && this.firstname == this.cat.name) || (thi
 10. Projete apenas o nome e sobrenome das pessoas com tipo de sangue de fator RH negativo:
 - Comando:
 ```javascript
-db.italians.find({"bloodType": {"$regex": /\w{1,2}-/i}}).count()
+db.italians.find({"bloodType": {"$regex": /\w{1,2}-/i}}, {"firstname": 1, "surname": 1})
 ```
 - Resultado:
 ```javascript
-4908
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470d"), "firstname" : "Pasquale", "surname" : "Gentile" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470f"), "firstname" : "Anna", "surname" : "Mariani" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44710"), "firstname" : "Daniela", "surname" : "Rossi" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44711"), "firstname" : "Raffaele", "surname" : "Orlando" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44713"), "firstname" : "Davide", "surname" : "Neri" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44715"), "firstname" : "Silvia", "surname" : "Pellegrini" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44719"), "firstname" : "Salvatore", "surname" : "Mancini" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471a"), "firstname" : "Riccardo", "surname" : "Colombo" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471d"), "firstname" : "Antonio", "surname" : "Mariani" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471e"), "firstname" : "Veronica", "surname" : "Martini" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471f"), "firstname" : "Giacomo", "surname" : "Martinelli" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44720"), "firstname" : "Eleonora", "surname" : "Valentini" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44722"), "firstname" : "Matteo", "surname" : "Ferraro" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44724"), "firstname" : "Valeira", "surname" : "Ruggiero" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4472a"), "firstname" : "Patrizia", "surname" : "Sartori" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4472b"), "firstname" : "Cristina", "surname" : "Conte" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4472e"), "firstname" : "Carlo", "surname" : "Vitale" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44734"), "firstname" : "Tiziana", "surname" : "Caputo" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44736"), "firstname" : "Federico", "surname" : "Morelli" }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44739"), "firstname" : "Giusy", "surname" : "Ferrara" }
+Type "it" for more
+```
+* * *
+11. Projete apenas os animais dos italianos. Devem ser listados os animais com nome e idade. Não mostre o identificado do mongo (ObjectId):
+- Comando:
+```javascript
+db.italians.aggregate([{'$match': {"$or": [{"cat": {"$exists": true}}, {"dog": {"$exists": true}}]}},
+                        {'$project': {"cat.name": 1, "cat.age": 1, "dog.name": 1, "dog.age": 1}}])
+```
+- Resultado:
+```javascript
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470b"), "cat" : { "name" : "Fabio", "age" : 0 }, "dog" : { "name" : "Alessandro", "age" : 5 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470c"), "cat" : { "name" : "Stefano", "age" : 0 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470d"), "dog" : { "name" : "Gianni", "age" : 3 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4470f"), "dog" : { "name" : "Daniela", "age" : 9 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44711"), "cat" : { "name" : "Claudia", "age" : 11 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44712"), "cat" : { "name" : "Maurizio", "age" : 6 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44713"), "cat" : { "name" : "Elena", "age" : 2 }, "dog" : { "name" : "Giusy", "age" : 15 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44715"), "dog" : { "name" : "Lorenzo", "age" : 14 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44716"), "cat" : { "name" : "Gabiele", "age" : 10 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44717"), "cat" : { "name" : "Patrizia", "age" : 12 }, "dog" : { "name" : "Rita", "age" : 17 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44718"), "cat" : { "name" : "Tiziana", "age" : 3 }, "dog" : { "name" : "Matteo", "age" : 8 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44719"), "cat" : { "name" : "Marta", "age" : 10 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471a"), "dog" : { "name" : "Sergio", "age" : 15 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471b"), "cat" : { "name" : "Davide", "age" : 7 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471d"), "cat" : { "name" : "Dario", "age" : 5 }, "dog" : { "name" : "Fabrizio", "age" : 9 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471e"), "cat" : { "name" : "Paola", "age" : 15 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae4471f"), "cat" : { "name" : "Antonella", "age" : 10 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44720"), "dog" : { "name" : "Fabio", "age" : 17 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44721"), "dog" : { "name" : "Veronica", "age" : 5 } }
+{ "_id" : ObjectId("5e5bad135ba4866e0ae44722"), "cat" : { "name" : "Lucia", "age" : 13 }, "dog" : { "name" : "Federica", "age" : 14 } }
+Type "it" for more
 ```
