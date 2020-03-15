@@ -34,7 +34,7 @@ MATCH (m:Movie {released:2003}) RETURN m
 ```
 ***
 Exercise 2.2: View the retrieved results as a table imagem
-__Colocar imagem__
+![Visualização tabela](prints/visualizacao_tabela.jpg)
 ***
 Exercise 2.3: Query the database for all property keys
 ```terminal
