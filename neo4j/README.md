@@ -4,7 +4,7 @@
 Este exercício foi feito sobre a base movies do Neo4j. 
 Para instalar esta base siga os comandos deste [link](https://neo4j.com/developer/example-project/) na seção de **Data Setup**.
 
-<h2>Exercise 1: Retrieving Nodes</h2>
+<h2>Exercício 1: Retrieving Nodes</h2>
 
 Exercise 1.1: Retrieve all nodes from the database
 ```terminal
@@ -26,7 +26,7 @@ Exercise 1.4: Retrieve all Movie nodes
 MATCH (m:Movie) RETURN m
 ```
 
-<h2>Exercise 2: Filtering queries using property values</h2>
+<h2>Exercício 2: Filtering queries using property values</h2>
 
 Exercise 2.1: Retrieve all movies that were released in a specific year
 ```terminal
@@ -34,7 +34,7 @@ MATCH (m:Movie {released:2003}) RETURN m
 ```
 ***
 Exercise 2.2: View the retrieved results as a table imagem
-__Colocar imagem
+__Colocar imagem__
 ***
 Exercise 2.3: Query the database for all property keys
 ```terminal
@@ -56,7 +56,7 @@ Exercise 2.6: Display more user-friendly headers in the table
 MATCH (m:Movie) RETURN m.title AS `movie title`, m.released AS released, m.tagline AS tagLine
 ```
 
-<h2>Exercise 3: Filtering queries using relationships</h2>
+<h2>Exercício 3: Filtering queries using relationships</h2>
 
 Exercise 3.1: Display the schema of the database
 ```terminal
@@ -83,7 +83,7 @@ Exercise 3.5: Retrieve information about the roles that Tom Hanks acted in
 MATCH (m:Movie)-[rel:ACTED_IN]-(:Person {name: 'Tom Hanks'}) RETURN m.title, rel.roles
 ```
 
-<h2>Exercise 4: Filtering queries using the WHERE clause</h2>
+<h2>Exercício 4: Filtering queries using the WHERE clause</h2>
 
 Exercise 4.1: Retrieve all movies that Tom Cruise acted in
 ```terminal
@@ -150,7 +150,7 @@ Exercise 4.13: Retrieve the movies that have an actor’s role that is the name 
 MATCH (p:Person)-[rel:ACTED_IN]->(m:Movie) WHERE  m.title in rel.roles RETURN  p.name as Actor, rel.roles as Role, m.title as Movie
 ```
 
-<h2>Exercise 5: Controlling query processing</h2>
+<h2>Exercício 5: Controlling query processing</h2>
 
 Exercise 5.1: Retrieve data using multiple MATCH patterns.
 ```terminal
@@ -212,7 +212,7 @@ Exercise 5.12: Retrieve the movies that have at least 2 directors with other opt
 MATCH (m:Movie) WITH m, size((:Person)-[:DIRECTED]->(m)) AS directors WHERE directors >= 2 OPTIONAL MATCH (p:Person)-[:REVIEWED]->(m) RETURN m.title, p.name
 ```
 
-<h2>Exercise 6: Controlling results returned</h2>
+<h2>Exercício 6: Controlling results returned</h2>
 
 Exercise 6.1: Execute a query that returns duplicate records.
 ```terminal
@@ -244,10 +244,20 @@ Exercise 6.6: Retrieve all actors that have not appeared in more than 3 movies.
 MATCH (p:Person)-[:ACTED_IN]->(m:Movie) WITH p, count(p) AS numMovies, collect(m.title) AS movies WHERE numMovies <= 3 RETURN p.name as Actor, movies
 ```
 
-<h2>Exercise 7: Working with Cypher data</h2>
+<h2>Exercício 7: Working with Cypher data</h2>
+
 Exercise 7.1: Collect and use lists.
 ```terminal
 MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:PRODUCED]-(p:Person) WITH m, collect(DISTINCT a.name) AS actors, collect(DISTINCT p.name) as producers RETURN m.title, actors, producers ORDER BY size(actors)
 ```
 ***
+Exercise 7.2: Collect a list.
 
+***
+Exercise 7.3: Unwind a list.
+
+***
+Exercise 7.4: Perform a calculation with the date type.
+
+
+<h2>Exercício 8 – Creating nodes</h2>
