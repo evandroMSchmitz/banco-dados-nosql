@@ -267,3 +267,76 @@ MATCH (m:Movie)<-[:ACTED_IN]-(actor:Person {name: 'Tom Hanks'}) WHERE exists(act
 ```
 
 <h2>Exercício 8 – Creating nodes</h2>
+
+Exercise 8.1: Create a Movie node.
+```terminal
+```
+***
+Exercise 8.2: Retrieve the newly-created node.
+```terminal
+```
+***
+Exercise 8.3: Create a Person node.
+```terminal
+```
+***
+Exercise 8.4: Retrieve the newly-created node.
+```terminal
+```
+***
+Exercise 8.5: Add a label to a node.
+```terminal
+```
+***
+Exercise 8.6: Retrieve the node using the new label.
+```terminal
+```
+***
+Exercise 8.7: Add the Female label to selected nodes.
+```terminal
+```
+***
+Exercise 8.8: Retrieve all Female nodes.
+```terminal
+```
+***
+Exercise 8.9: Remove the Female label from the nodes that have this label.
+```terminal
+```
+***
+Exercise 8.10: View the current schema of the graph.
+```terminal
+```
+***
+Exercise 8.11: Add properties to a movie.
+```terminal
+```
+***
+Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
+```terminal
+```
+***
+Exercise 8.13: Add properties to the person, Robin Wright.
+```terminal
+```
+***
+Exercise 8.14: Retrieve an updated Person node.
+```terminal
+```
+***
+Exercise 8.15: Remove a property from a Movie node.
+```terminal
+```
+***
+Exercise 8.16: Retrieve the node to confirm that the property has been removed.
+```terminal
+```
+***
+Exercise 8.17: Remove a property from a Person node.
+```terminal
+```
+***
+Exercise 8.18: Retrieve the node to confirm that the property has been removed.
+```terminal
+```
+***
