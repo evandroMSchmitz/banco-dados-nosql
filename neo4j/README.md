@@ -252,12 +252,18 @@ MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:PRODUCED]-(p:Person) WITH m, collect(
 ```
 ***
 Exercise 7.2: Collect a list.
-
+```terminal
+MATCH (a:Person)-[:ACTED_IN]->(m:Movie) WITH  a, collect(m.title) AS movies WHERE size(movies) > 5 RETURN a.name, movies
+```
 ***
 Exercise 7.3: Unwind a list.
-
+```terminal
+MATCH (a:Person)-[:ACTED_IN]->(m:Movie) WITH  a, collect(m.title) AS movies WHERE size(movies) > 5 WITH a, movies UNWIND movies AS movie RETURN a.name, movie
+```
 ***
 Exercise 7.4: Perform a calculation with the date type.
-
+```terminal
+MATCH (m:Movie)<-[:ACTED_IN]-(actor:Person {name: 'Tom Hanks'}) WHERE exists(actor.born) AND exists(m.released) WITH m, date().year - m.released as yearsPassed, m.released - actor.born as ageTom RETURN m.title, m.released, yearsPassed, ageTom ORDER BY yearsPassed
+```
 
 <h2>Exercício 8 – Creating nodes</h2>
