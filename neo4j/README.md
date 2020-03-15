@@ -270,73 +270,95 @@ MATCH (m:Movie)<-[:ACTED_IN]-(actor:Person {name: 'Tom Hanks'}) WHERE exists(act
 
 Exercise 8.1: Create a Movie node.
 ```terminal
+CREATE(:Movie{title: 'Forrest Gump'})
 ```
 ***
 Exercise 8.2: Retrieve the newly-created node.
 ```terminal
+MATCH (m:Movie {title: 'Forrest Gump'}) RETURN m
 ```
 ***
 Exercise 8.3: Create a Person node.
 ```terminal
+CREATE(:Person{name: 'Robin Wright'})
 ```
 ***
 Exercise 8.4: Retrieve the newly-created node.
 ```terminal
+MATCH (p:Person) WHERE p.name = 'Robin Wright' RETURN p
 ```
 ***
 Exercise 8.5: Add a label to a node.
 ```terminal
+MATCH (m:Movie) WHERE m.released < 2010 SET m:OlderMovie RETURN m
 ```
 ***
 Exercise 8.6: Retrieve the node using the new label.
 ```terminal
+MATCH (m:OlderMovie) RETURN m.title, m.released
 ```
 ***
 Exercise 8.7: Add the Female label to selected nodes.
 ```terminal
+MATCH (p:Person) WHERE p.name STARTS WITH 'Robin' SET p:Female RETURN DISTINCT labels(p)
 ```
 ***
 Exercise 8.8: Retrieve all Female nodes.
 ```terminal
+MATCH (p:Female) RETURN p
 ```
 ***
 Exercise 8.9: Remove the Female label from the nodes that have this label.
 ```terminal
+MATCH (p:Person) WHERE p.name STARTS WITH 'Robin' REMOVE p:Female RETURN DISTINCT labels(p)
 ```
 ***
 Exercise 8.10: View the current schema of the graph.
 ```terminal
+CALL db.schema.visualization()
 ```
 ***
 Exercise 8.11: Add properties to a movie.
 ```terminal
+MATCH(m:Movie) 
+WHERE m.title = 'Forrest Gump' 
+SET m.released = 1994, m.lengthInMinutes = 142, m.tagline = 'Life is like a box of chocolates…​you never know what you’re gonna get.',
+m:OlderMovie
+RETURN m
 ```
 ***
 Exercise 8.12: Retrieve an OlderMovie node to confirm the label and properties.
 ```terminal
+MATCH(m:OlderMovie) WHERE m.title = 'Forrest Gump' RETURN m
 ```
 ***
 Exercise 8.13: Add properties to the person, Robin Wright.
 ```terminal
+MATCH(p:Person) WHERE p.name = 'Robin Wright'  SET p.born = 1966, p.birthPlace = 'Dallas' RETURN p
 ```
 ***
 Exercise 8.14: Retrieve an updated Person node.
 ```terminal
+MATCH(p:Person) WHERE p.name = 'Robin Wright' RETURN p
 ```
 ***
 Exercise 8.15: Remove a property from a Movie node.
 ```terminal
+MATCH(m:Movie) WHERE m.title = 'Forrest Gump' REMOVE m.lengthInMinutes RETURN m
 ```
 ***
 Exercise 8.16: Retrieve the node to confirm that the property has been removed.
 ```terminal
+MATCH(m:Movie) WHERE m.title = 'Forrest Gump' RETURN m
 ```
 ***
 Exercise 8.17: Remove a property from a Person node.
 ```terminal
+MATCH(p:Person) WHERE p.name = 'Robin Wright' REMOVE p.birthPlace RETURN p
 ```
 ***
 Exercise 8.18: Retrieve the node to confirm that the property has been removed.
 ```terminal
+MATCH(p:Person) WHERE p.name = 'Robin Wright' RETURN p
 ```
 ***
