@@ -366,54 +366,100 @@ MATCH(p:Person) WHERE p.name = 'Robin Wright' RETURN p
 
 Exercise 9.1: Create ACTED_IN relationships.
 ```terminal
+MATCH (m:Movie) WHERE m.title='Forrest Gump' MATCH (a:Person) WHERE a.name='Robin Wright' OR a.name='Tom Hanks' OR a.name='Gary Sinise' CREATE(a)-[rel:ACTED_IN]->(m) RETURN a, m
 ```
 ***
 Exercise 9.2: Create DIRECTED relationships.
 ```terminal
+MATCH (m:Movie)
+WHERE m.title='Forrest Gump'
+MATCH (a:Person)
+WHERE a.name='Robert Zemeckis'
+CREATE(a)-[rel:DIRECTED]->(m)
+RETURN a, m
 ```
 ***
 Exercise 9.3: Create a HELPED relationship.
 ```terminal
+MATCH (a:Person)
+WHERE a.name='Tom Hanks'
+MATCH (p:Person)
+WHERE p.name='Gary Sinise'
+CREATE(a)-[rel:HELPED ]->(p)
+RETURN a, p
 ```
 ***
 Exercise 9.4: Query nodes and new relationships.
 ```terminal
+MATCH (p:Person)-[rel]-(m:Movie)
+WHERE m.title = 'Forrest Gump'
+RETURN p, rel, m
 ```
 ***
 Exercise 9.5: Add properties to relationships.
 ```terminal
+MATCH (p:Person)-[rel:ACTED_IN]->(m:Movie)
+WHERE m.title = 'Forrest Gump'
+SET rel.roles =
+CASE p.name
+	WHEN 'Tom Hanks' THEN ['Forrest Gump']
+    WHEN 'Robin Wright' THEN ['Jenny Curran']
+    WHEN 'Gary Sinise' THEN ['Lieutenant Dan Taylor']
+END
+RETURN p, m, rel
 ```
 ***
 Exercise 9.6: Add a property to the HELPED relationship.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+WHERE p.name = 'Tom Hanks' AND p2.name = 'Gary Sinise'
+SET rel.research = 'war history'
+RETURN p, p2, rel
 ```
 ***
 Exercise 9.7: View the current list of property keys in the graph.
 ```terminal
+CALL db.propertyKeys
 ```
 ***
 Exercise 9.8: View the current schema of the graph.
 ```terminal
+CALL db.schema.visualization
 ```
 ***
 Exercise 9.9: Retrieve the names and roles for actors.
 ```terminal
+MATCH (p:Person)-[rel:ACTED_IN]->(m:Movie)
+WHERE m.title = 'Forrest Gump'
+RETURN p.name, rel.roles
 ```
 ***
 Exercise 9.10: Retrieve information about any specific relationships.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+RETURN p, rel, p2
 ```
 ***
 Exercise 9.11: Modify a property of a relationship.
 ```terminal
+MATCH (p:Person)-[rel:ACTED_IN]->(m:Movie)
+WHERE m.title = 'Forrest Gump' AND p.name = 'Gary Sinise'
+SET rel.roles = ['Lt. Dan Taylor']
+RETURN p, m, rel
 ```
 ***
 Exercise 9.12: Remove a property from a relationship.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+WHERE p.name = 'Tom Hanks' AND p2.name = 'Gary Sinise'
+REMOVE rel.research
+RETURN p, p2, rel
 ```
 ***
 Exercise 9.13: Confirm that your modifications were made to the graph.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+RETURN p, p2, rel
 ```
 
 <h2>Exercício 10 – Deleting nodes and relationships</h2>
