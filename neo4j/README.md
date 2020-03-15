@@ -361,4 +361,83 @@ Exercise 8.18: Retrieve the node to confirm that the property has been removed.
 ```terminal
 MATCH(p:Person) WHERE p.name = 'Robin Wright' RETURN p
 ```
+
+<h2>Exercício 9 – Creating relationships</h2>
+
+Exercise 9.1: Create ACTED_IN relationships.
+```terminal
+```
 ***
+Exercise 9.2: Create DIRECTED relationships.
+```terminal
+```
+***
+Exercise 9.3: Create a HELPED relationship.
+```terminal
+```
+***
+Exercise 9.4: Query nodes and new relationships.
+```terminal
+```
+***
+Exercise 9.5: Add properties to relationships.
+```terminal
+```
+***
+Exercise 9.6: Add a property to the HELPED relationship.
+```terminal
+```
+***
+Exercise 9.7: View the current list of property keys in the graph.
+```terminal
+```
+***
+Exercise 9.8: View the current schema of the graph.
+```terminal
+```
+***
+Exercise 9.9: Retrieve the names and roles for actors.
+```terminal
+```
+***
+Exercise 9.10: Retrieve information about any specific relationships.
+```terminal
+```
+***
+Exercise 9.11: Modify a property of a relationship.
+```terminal
+```
+***
+Exercise 9.12: Remove a property from a relationship.
+```terminal
+```
+***
+Exercise 9.13: Confirm that your modifications were made to the graph.
+```terminal
+```
+
+<h2>Exercício 10 – Deleting nodes and relationships</h2>
+
+Exercise 10.1: Delete a relationship.
+```terminal
+```
+***
+Exercise 10.2: Confirm that the relationship has been deleted.
+```terminal
+```
+***
+Exercise 10.3: Retrieve a movie and all of its relationships.
+```terminal
+```
+***
+Exercise 10.4: Try deleting a node without detaching its relationships.
+```terminal
+```
+***
+Exercise 10.5: Delete a Movie node, along with its relationships.
+```terminal
+```
+***
+Exercise 10.6: Confirm that the Movie node has been deleted.
+```terminal
+```
