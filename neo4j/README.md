@@ -466,24 +466,40 @@ RETURN p, p2, rel
 
 Exercise 10.1: Delete a relationship.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+DELETE rel
 ```
 ***
 Exercise 10.2: Confirm that the relationship has been deleted.
 ```terminal
+MATCH (p:Person)-[rel:HELPED]->(p2:Person)
+RETURN p, p2, rel
 ```
 ***
 Exercise 10.3: Retrieve a movie and all of its relationships.
 ```terminal
+MATCH (p:Person)-[rel]->(m:Movie)
+WHERE m.title = 'Forrest Gump'
+return p, rel, m
 ```
 ***
 Exercise 10.4: Try deleting a node without detaching its relationships.
 ```terminal
+MATCH (m:Movie)
+WHERE m.title = 'Forrest Gump'
+DELETE m
 ```
 ***
 Exercise 10.5: Delete a Movie node, along with its relationships.
 ```terminal
+MATCH (m:Movie)
+WHERE m.title = 'Forrest Gump'
+DETACH DELETE m
 ```
 ***
 Exercise 10.6: Confirm that the Movie node has been deleted.
 ```terminal
+MATCH (p:Person)-[rel]->(m:Movie)
+WHERE m.title = 'Forrest Gump'
+return p, rel, m
 ```
