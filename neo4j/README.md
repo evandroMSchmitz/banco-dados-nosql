@@ -1,7 +1,8 @@
 <h1>Atividade Prática – Neo4j</h1>
 
 <h2>Setup:</h2>
-Este exercício foi feito sobre a base movies do Neo4j. 
+Este exercício foi feito sobre a base movies do Neo4j.
+
 Para instalar esta base siga os comandos deste [link](https://neo4j.com/developer/example-project/) na seção de **Data Setup**.
 
 <h2>Exercício 1: Retrieving Nodes</h2>
